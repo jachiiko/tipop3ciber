@@ -3,24 +3,36 @@ pipeline {
 
     stages {
 
-        stage('Clonar repositorio') {
+        stage('Build') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/jachiiko/tipop3ciber.git'
+                echo 'Construyendo el proyecto...'
             }
         }
 
-        stage('Generar documentación con Doxygen') {
+        stage('Test') {
             steps {
+                echo 'Ejecutando pruebas...'
+            }
+        }
+
+        stage('Generate Documentation') {
+            steps {
+                echo 'Generando documentación con Doxygen...'
                 sh 'doxygen Doxyfile'
             }
         }
 
         stage('Ejecutar script Python') {
             steps {
+                echo 'Ejecutando script Python...'
                 sh 'python3 app.py'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Desplegando aplicación...'
             }
         }
     }
 }
-
