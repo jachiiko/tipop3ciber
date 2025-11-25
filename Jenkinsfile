@@ -12,14 +12,15 @@ pipeline {
 
         stage('Generar documentación con Doxygen') {
             steps {
-                sh "doxygen Doxyfile.txt"
+                sh 'doxygen Doxyfile'
             }
         }
 
         stage('Ejecutar script Python') {
             steps {
-                sh "python3 app.py"
+                sh 'python3 app.py'
             }
         }
     }
 }
+
